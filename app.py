@@ -12,7 +12,7 @@ def get_column_names(schemas, ds_name, sorting_key='column_position'):
 
 def read_csv(file, schemas):
     file_path_list = file.split('\\')
-    print(f'FILE_PATH_LIST {file_path_list}')
+    # print(f'FILE_PATH_LIST {file_path_list}')
     ds_name = file_path_list[-2]
     file_name = file_path_list[-1]
     columns = get_column_names(schemas, ds_name)
@@ -21,7 +21,7 @@ def read_csv(file, schemas):
 
 def to_json(df, tgt_base_dir, ds_name, file_name):
     json_file_path = f'{tgt_base_dir}\\{ds_name}\\{file_name}'
-    print(f'JSON_FILE_PATH {json_file_path}')
+    # print(f'JSON_FILE_PATH {json_file_path}')
     os.makedirs(f'{tgt_base_dir}\\{ds_name}', exist_ok=True)
     df.to_json(
         json_file_path,
@@ -34,7 +34,7 @@ def file_converter(src_base_dir, tgt_base_dir, ds_name):
     files = glob.glob(f'{src_base_dir}\\{ds_name}\\part-*')
 
     for file in files:
-        print(f'FILE {file}')
+        # print(f'FILE {file}')
         df = read_csv(file, schemas)
         file_name = file.split('\\')
         to_json(df, tgt_base_dir, ds_name, file_name)
